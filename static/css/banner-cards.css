@@ -1,0 +1,157 @@
+#home {
+  width: 100%;
+  margin-top: 100px;
+}
+#home .glide .glide__track .glide__slides .glide__slide {
+  width: 100%;
+  background: rgb(2, 11, 23);
+  overflow: hidden;
+  border-radius: 5px;
+  filter: brightness(1.1);
+  position: relative;
+}
+#home .glide .glide__track .glide__slides .glide__slide .banner .container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#home
+  .glide
+  .glide__track
+  .glide__slides
+  .glide__slide
+  .banner
+  .container
+  .right-banner-image {
+  width: 60%;
+}
+#home
+  .glide
+  .glide__track
+  .glide__slides
+  .glide__slide
+  .banner
+  .container
+  .right-banner-image
+  img {
+  width: 100%;
+  height: 100%;
+}
+#home
+  .glide
+  .glide__track
+  .glide__slides
+  .glide__slide
+  .banner
+  .container
+  .left-banner-text {
+  width: 40%;
+  padding: 60px;
+  padding-right: 110px;
+}
+#home
+  .glide
+  .glide__track
+  .glide__slides
+  .glide__slide
+  .banner
+  .container
+  .left-banner-text
+  h1 {
+  font-size: 50px;
+}
+#home
+  .glide
+  .glide__track
+  .glide__slides
+  .glide__slide
+  .banner
+  .container
+  .left-banner-text
+  h3 {
+  font-size: 20px;
+  color: rgb(177, 177, 177);
+  font-family: "Poppins";
+  padding: 10px 0;
+  font-weight: normal;
+}
+#home
+  .glide
+  .glide__track
+  .glide__slides
+  .glide__slide
+  .banner
+  .container
+  .left-banner-text
+  p {
+  font-size: 20px;
+  color: rgb(177, 177, 177);
+  font-family: "Poppins";
+  padding: 10px 0;
+  font-weight: normal;
+}
+button {
+  border: none !important;
+}
+button.glide__arrow i {
+  font-size: 40px;
+}
+#home
+  .glide
+  .glide__track
+  .glide__slides
+  .glide__slide
+  .banner
+  .container
+  .gradient {
+  width: 10%;
+  height: 100vh;
+  position: absolute;
+  left: 41%;
+  transform: translate(-41%);
+  background: linear-gradient(to right, #030b17, rgba(0, 0, 0, 0));
+}
+@media only screen and (max-width: 1350px) {
+  #home
+    .glide
+    .glide__track
+    .glide__slides
+    .glide__slide
+    .banner
+    .container
+    .left-banner-text {
+    display: none;
+  }
+  #home
+    .glide
+    .glide__track
+    .glide__slides
+    .glide__slide
+    .banner
+    .container
+    .right-banner-image {
+    width: 100%;
+  }
+  button.glide__arrow i {
+    font-size: 20px;
+  }
+  button.glide__arrow--left i {
+    position: relative;
+    left: -20px;
+  }
+  button.glide__arrow--right i {
+    position: relative;
+    right: -20px;
+  }
+  #home
+    .glide
+    .glide__track
+    .glide__slides
+    .glide__slide
+    .banner
+    .container
+    .gradient {
+    display: none;
+  }
+}

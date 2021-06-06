@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+<section id="home">
+<!-- Glide JS - Banner Slide -->
+    <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+            {% for card in bannerCards %}
+                <li class="glide__slide">
+                    <a href="{{card.targetUrl}}" class="banner"  target="_blank">
+                        <div class="container">
+                            <div class="left-banner-text">
+                                <h1>{{card.title}}</h1>
+                                <h3>{{card.category}}</h3>
+                                <p style="line-height: 40px;">{{card.content}}.</p>
+                            </div>
+                            <div class="right-banner-image">
+                                <img src="{{card.imageurl}}" alt="">
+                            </div>
+                            <div class="gradient"></div>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        <!-- Arrows -->
+        <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fas fa-angle-left" aria-hidden="true"></i></button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fas fa-angle-right" aria-hidden="true"></i></button>
+        </div>
+        </div>
+
+    <!-- disney+ cards -->
+    <div class="thumbnail">
+        <a href="https://www.hotstar.com/in/channels/disney" class="box" target="_blank">
+            <img src="https://img1.hotstarext.com/image/upload/f_auto,t_web_hs_1x/sources/r1/cms/prod/6347/746347-h" alt="">
+            <video autoplay loop preload="auto" src='static/videos/disney.mp4'></video>
+        </a>
+        <!-- ----- -->
+        <a href="https://www.hotstar.com/in/channels/pixar" class="box" target="_blank">
+            <img src="https://img1.hotstarext.com/image/upload/f_auto,t_web_hs_1x/sources/r1/cms/prod/6348/746348-h" alt="">
+            <video autoplay loop preload="auto" src='static/videos/pixar.mp4'></video>
+        </a>
+        <!-- ----- -->
+        <a href="https://www.hotstar.com/in/channels/marvel" class="box" target="_blank">
+            <img src="https://img1.hotstarext.com/image/upload/f_auto,t_web_hs_1x/sources/r1/cms/prod/6349/746349-h" alt="">
+            <video autoplay loop preload="auto" src='static/videos/marvel.mp4'></video>
+        </a>
+        <!-- ----- -->
+        <a href="https://www.hotstar.com/in/channels/star-wars" class="box" target="_blank">
+            <img src="https://img1.hotstarext.com/image/upload/f_auto,t_web_hs_1x/sources/r1/cms/prod/6357/746357-h" alt="">
+            <video autoplay loop preload="auto" src='static/videos/starwars.mp4'></video>
+        </a>
+        <!-- ----- -->
+        <a href="https://www.hotstar.com/in/channels/nat-geo" class="box" target="_blank">
+            <img src="https://img1.hotstarext.com/image/upload/f_auto,t_web_hs_1x/sources/r1/cms/prod/6355/746355-h" alt="">
+            <video autoplay loop preload="auto" src='static/videos/netgeo.mp4'></video>
+        </a>
+        <!-- ----- -->
+    </div>
+    <!-- Cards -->
+    <div class="recomandations">
+        <a href="#" target="_blank">Recommanded For You</a>
+        <div class="glide2 glide-c">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                {% for card in cards %}
+                <li class="glide__slide">
+                    <a href="{{card.targetUrl}}" class="card" target="_blank">
+                        <div class="image-holder">
+                            <img src="{{card.imageurl}}" alt="">
+                        </div>
+                        <div class="title-card">
+                            <h2>{{card.title}}</h2>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        <!-- Arrows -->
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fas fa-angle-left" aria-hidden="true"></i></button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fas fa-angle-right" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="recomandations">
+        <a href="#" target="_blank">Hit Movies</a>
+        <div class="glide3 glide-c">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                {% for card in cards %}
+                <li class="glide__slide">
+                    <a href="{{card.targetUrl}}" class="card" target="_blank">
+                        <div class="image-holder">
+                            <img src="{{card.imageurl}}" alt="">
+                        </div>
+                        <div class="title-card">
+                            <h2>{{card.title}}</h2>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        <!-- Arrows -->
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fas fa-angle-left" aria-hidden="true"></i></button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fas fa-angle-right" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}

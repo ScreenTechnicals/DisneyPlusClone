@@ -1,0 +1,192 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 700;
+  color: #fff;
+  font-family: "Roboto Condensed", sans-serif;
+}
+body,
+html {
+  width: 100%;
+  background: linear-gradient(to bottom, #141b29, #0c111b 1500px);
+}
+a {
+  text-decoration: none;
+}
+ul,
+li {
+  list-style: none;
+}
+button {
+  outline: none;
+  border: none;
+  background: none;
+}
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: linear-gradient(to bottom, #141b29, #0c111b 1500px);
+}
+header .left-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+header .left-header .bars {
+  position: relative;
+}
+header .left-header .bars .fa-bars {
+  margin-top: 8px;
+  margin-right: 20px;
+  color: rgb(177, 177, 177);
+  cursor: pointer;
+  padding: 10px;
+}
+header .left-header .brand a img {
+  width: 150px;
+}
+header .left-header nav > ul {
+  display: flex;
+  margin-top: 8px;
+}
+header .left-header nav > ul li {
+  margin: 0 15px;
+  padding: 5px;
+}
+header .left-header nav > ul li a {
+  font-family: "Poppins";
+  font-weight: 500;
+  color: rgb(177, 177, 177);
+}
+header .left-header nav > ul li a:hover {
+  color: #fff;
+}
+header .left-header .kids a .kids-logo {
+  margin-top: 8px;
+}
+header .left-header .kids a .kids-logo img {
+  width: 50px;
+}
+/* Managing Dropdowns */
+/* Nav bars Dropdown */
+header .left-header .bars > .dropdown {
+  background: rgb(33, 33, 70);
+  border-radius: 5px;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: start;
+  visibility: hidden;
+  height: 0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+header .left-header .bars > .dropdown > li {
+  display: block;
+  margin: 5px 0;
+}
+header .left-header .bars > .dropdown > li a {
+  padding: 10px 20px;
+  font-weight: normal;
+  font-family: "Poppins";
+  font-size: 14px;
+  display: block;
+}
+header .left-header .bars > .dropdown > li a:hover {
+  background-color: #000;
+}
+header .left-header .bars:hover > .dropdown {
+  visibility: visible;
+  height: 150px;
+  transition: all 0.3s ease;
+}
+.drop-down-parent {
+  position: relative;
+}
+.drop-down-parent .li-ul-dropdown {
+  background: rgb(33, 33, 70);
+  width: 170px;
+  border-radius: 5px;
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: start;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.drop-down-parent .li-ul-dropdown li a {
+  padding: 10px 20px;
+  font-weight: normal;
+  font-family: "Poppins";
+  font-size: 14px;
+  display: block;
+  color: #fff;
+}
+.drop-down-parent .li-ul-dropdown li a:hover {
+  background-color: #000;
+}
+.drop-down-parent:hover .li-ul-dropdown {
+  visibility: visible;
+  top: 40px;
+  transition: all 0.3s ease;
+}
+header .right-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .right-header .search-form .search-bar {
+  position: relative;
+  margin-top: 8px;
+  margin-right: 10px;
+}
+header .right-header .search-form .search-bar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(177, 177, 177);
+  font-size: 18px;
+  width: 250px;
+  font-weight: normal;
+  transition: all 0.2s ease;
+}
+header .right-header .search-form .search-bar input:focus {
+  width: 300px;
+  border-bottom: 1px solid rgb(46, 136, 240);
+}
+header .right-header .search-form .search-bar > .search-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: rgb(177, 177, 177);
+}
+header .right-header .btn1 {
+  margin-top: 8px;
+}
+header .right-header .btn1 a {
+  padding: 5px 20px;
+  margin: 0 10px;
+  background: rgb(46, 136, 240);
+  border-radius: 5px;
+  font-weight: normal;
+}
+header .right-header .user-login {
+  margin-top: 8px;
+}
+header .right-header .user-login a {
+  text-transform: uppercase;
+  color: rgb(177, 177, 177);
+  margin: 0 20px;
+}

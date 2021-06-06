@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Search{% endblock title %}
+{% block body %}
+    <section id="search">
+    <h1>Showing all results for <span>"{{query}}"</span></h1>
+    <div class="cards-results">
+    {% for card in allCards %}
+        <a href="{{card.targetUrl}}" target="_blank">
+            <img src="{{card.imageurl}}" alt="">
+            <h2>{{card.title}}</h2>
+        </a>
+    {% endfor %}
+    </div>
+    </section>
+{% endblock body %}

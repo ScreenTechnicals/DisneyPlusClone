@@ -1,0 +1,633 @@
+{% load socialaccount %}
+{% providers_media_js %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/glide.core.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/glide.theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/banner-cards.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="shortcut icon" type="image/png" href="https://secure-media.hotstar.com/web-assets/prod/D+H_favicon.ico"/>
+    <title>{% block title %}{% endblock title %}- Disney+ clone</title>
+    <style>
+        #mobile-navbar,
+        .search-mobile,
+        .mobile-search-box {
+        display: none;
+        }
+
+        @media only screen and (max-width: 1400px) {
+        header .left-header nav,
+        header .left-header .kids,
+        header .left-header .bars .dropdown,
+        header .right-header .search-form,
+        header .right-header .user-login {
+            display: none;
+        }
+        #mobile-navbar {
+            display: flex;
+            width: 0;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.418);
+            color: #fff;
+            z-index: 999999;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        #mobile-navbar .nav-left {
+            width: 80%;
+            background-color: #131b2b;
+        }
+        #mobile-navbar .nav-left .login-box {
+            position: relative;
+            width: 100%;
+            padding: 20px;
+        }
+        #mobile-navbar .nav-left .login-box h1 {
+            font-size: 22px;
+        }
+        #mobile-navbar .nav-left .login-box h3 {
+            color: gray;
+            font-weight: normal;
+            font-size: 17px;
+        }
+        #mobile-navbar .nav-left .login-box .fa-angle-right {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translate(0, -50%);
+            font-size: 30px;
+        }
+        #mobile-navbar .nav-left .hr {
+            width: 100%;
+            height: 1px;
+            background-color: rgb(68, 68, 68);
+        }
+        #mobile-navbar .nav-left .kids-safe-box {
+            width: 100%;
+            position: relative;
+        }
+        #mobile-navbar .nav-left .kids-safe-box .kids-logo {
+            padding: 20px;
+        }
+        #mobile-navbar .nav-left .kids-safe-box .kids-logo img {
+            width: 120px;
+        }
+        #mobile-navbar .nav-left .kids-safe-box .toggler {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translate(0, -50%);
+        }
+        #mobile-navbar .nav-left .kids-safe-box .toggler .toggle-box {
+            width: 60px;
+            height: 30px;
+            background-color: #161616;
+            border-radius: 20px;
+            border: 1px groove #fff;
+            cursor: pointer;
+        }
+        #mobile-navbar .nav-left .kids-safe-box .toggler .toggle-box .circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #f1f1f1;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        #mobile-navbar .nav-left .nav-ul ul li {
+            margin: 20px 0;
+            display: block;
+        }
+        #mobile-navbar .nav-left .nav-ul ul li a {
+            display: block;
+            padding: 20px;
+            font-weight: normal;
+        }
+        #mobile-navbar .nav-left .nav-ul ul li a:hover {
+            background-color: #0c111b;
+        }
+        #mobile-navbar .nav-left .watch-list {
+            padding: 20px;
+        }
+        #mobile-navbar .nav-left .watch-list a {
+            font-weight: normal;
+            font-size: 20px;
+        }
+        #mobile-navbar .nav-right {
+            width: 20%;
+            height: 100vh;
+        }
+        .search-mobile {
+            display: block;
+        }
+        }
+        @media only screen and (max-width: 600px) {
+        header {
+            padding: 20px;
+        }
+        header .right-header .btn1 a {
+            padding: 5px 10px;
+            margin-right: 75px;
+            font-size: 12px;
+        }
+        header .left-header .brand a img {
+            width: 130px;
+        }
+        header .left-header .bars .fa-bars {
+            padding: 5px;
+        }
+        .search-mobile .mobile-search-icon {
+            display: block;
+            position: relative;
+            right: 40px;
+            top: 1px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .mobile-search-box {
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #141b29;
+            z-index: 99999;
+            overflow: hidden;
+        }
+        .mobile-search-box .search-input-box {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        .mobile-search-box .search-input-box form .mobile-input-search {
+            width: 100%;
+            height: 50px;
+            outline: none;
+            border: none;
+            background-color: #0c111b;
+            padding: 10px 80px;
+            font-family: "Poppins";
+            font-weight: 500;
+            font-size: 22px;
+            color: rgb(177, 177, 177);
+        }
+        .mobile-search-box .search-input-box form .mobile-input-search::placeholder {
+            color: #dddddd;
+        }
+        .mobile-search-box .search-input-box form .fa-arrow-left {
+            position: absolute;
+            left: 30px;
+            top: 33%;
+            color: rgb(177, 177, 177);
+            cursor: pointer;
+        }
+        .mobile-search-box .search-input-box form .btn-moblie-times-reset .fa-times {
+            position: absolute;
+            right: 30px;
+            top: 33%;
+            color: rgb(177, 177, 177);
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .mobile-search-box .content-search-box-mobile {
+            width: 100%;
+            text-align: center;
+            margin-top: 70%;
+        }
+        .mobile-search-box .content-search-box-mobile h1 {
+            font-size: 20px;
+            font-weight: normal;
+            color: rgb(177, 177, 177);
+        }
+        }
+         #home .thumbnail{
+             width: 100%;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             padding: 20px 90px;
+         }
+         #home .thumbnail .box{
+             position: relative;
+             width: 200%;
+             height: 100%;
+             overflow: hidden;
+            border-radius: 10px;
+            margin: 20px;
+         }
+         #home .thumbnail .box img{
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            filter: brightness(1.2);
+         }
+         #home .thumbnail .box video{
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 98%;
+             height: 98%;
+             object-fit: cover;
+             border-radius: 10px;
+             z-index: -1;
+             filter: brightness(1.2);
+         }
+         #home .thumbnail .box:hover video{
+             z-index: 1;
+             transform: scale(1.1);
+         }
+         #home .thumbnail .box:hover{
+             transition: all .5s ease;
+             transform: scale(1.1);
+         }
+         @media only screen and (max-width: 850px){
+             #home .thumbnail{
+                 flex-wrap: wrap;
+             }
+             #home .thumbnail .box{
+                 width: 40%;
+                 height: 150px;
+                 margin: 20px;
+             }
+         }
+         @media only screen and (max-width: 650px){
+             #home .thumbnail{
+                padding: 30px;
+             }
+             #home .thumbnail .box{
+                 width: 100%;
+                 height: 100%;
+                 margin: 10px;
+             }
+         }
+         #home .recomandations{
+             width: 100%;
+             padding: 30px 100px;
+         }
+         #home .recomandations a{
+             padding: 20px 0;
+             font-size: 40px;
+         }
+         #home .recomandations a:hover{
+             color: rgb(58, 150, 255);
+         }
+         #home .recomandations .glide-c .glide__track .glide__slides .glide__slide{
+             width: max-content;
+             height: max-content;
+             border-radius: 10px;
+             background: #000;
+             position: relative;
+             transition: all .5s ease;
+             overflow: hidden;
+         }
+         #home .recomandations .glide-c .glide__track .glide__slides .glide__slide .card .image-holder img{
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+             object-position: center;
+         }
+         #home .recomandations .glide-c .glide__track .glide__slides .glide__slide .card .title-card{
+             width: 100%;
+             position: absolute;
+             left: 0;
+             bottom: -20px;
+             z-index: 2;
+             background: linear-gradient(to top, rgba(0, 0, 0, 0.89), rgba(8, 9, 24, 0.89));
+             visibility: hidden;
+         }
+         #home .recomandations .glide-c .glide__track .glide__slides .glide__slide .card .title-card h2{
+             font-size: 17px;
+             padding: 50% 0;
+             font-family: 'Poppins';
+             font-weight: 600;
+         }
+         #home .recomandations .glide-c .glide__track .glide__slides .glide__slide .card:hover .title-card{
+             visibility: visible;
+             top: 0;
+             padding: 10px;
+             transition: all .3s ease;
+         }
+         #home .recomandations .glide-c .glide__track .glide__slides .glide__slide:hover{
+             transform: scale(1.2);
+             transition: all .5s ease;
+         }
+         #home .recomandations .glide-c{
+             position: relative;
+             margin-top: 30px;
+         }
+         #home .recomandations .glide-c .glide__arrow--left{
+             position: absolute;
+             left: 0;
+         }
+         #home .recomandations .glide-c .glide__arrow--left{
+             position: absolute;
+             right: 0;
+         }
+         @media only screen and (max-width: 650px){
+             #home .recomandations{
+                 width: 100%;
+                 padding: 30px;
+             }
+             #home .recomandations a{
+                 font-size: 25px;
+             }
+         }
+         footer{
+             width: 100%;
+             display: flex;
+             justify-content: space-around;
+             align-items: baseline;
+             text-align: center;
+             background: #000;
+             padding: 30px;
+             flex-wrap: wrap;
+         }
+         #search{
+             width: 100%;
+             margin-top: 100px;
+             min-height: 100vh;
+         }
+         #search h1{
+             padding: 30px 60px;
+             color: rgb(177, 177, 177);
+         }
+         #search h1 span{
+            font-style: italic;
+            font-family: "Poppins";
+            font-weight: normal;
+         }
+        #search .cards-results{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 30px 60px;
+            flex-wrap: wrap;
+        }
+        #search .cards-results a{
+            width: max-content;
+            height: max-content;
+            overflow: hidden;
+            position: relative;
+            margin: 30px;
+        }
+        #search .cards-results a img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #search .cards-results a h2{
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.63);
+            display: flex;
+            padding: 5px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            visibility: hidden;
+            transition: all .5s ease;
+        }
+        #search .cards-results a:hover h2{
+            visibility: visible;
+            top: 0;
+            transition: all .5s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav Starts -->
+    <header>
+        <div class="left-header">
+            <div class="bars">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+                <div class="dropdown">
+                    <li><a href="https://www.hotstar.com/in/channels">Channels</a></li>
+                    <li><a href="https://www.hotstar.com/in/languages">Languages</a></li>
+                    <li><a href="https://www.hotstar.com/in/genres">Genres</a></li>
+                </div>
+            </div>
+            <div class="brand">
+                <a href="/">
+                    <img src="{% static 'images/logo.svg' %}" alt="">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                   <li class="drop-down-parent"><a href="https://www.hotstar.com/in/tv">TV</a>
+                        <ul class="li-ul-dropdown">
+                            <li><a href="https://www.hotstar.com/in/channels/hotstar-specials">Hotstar Special</a></li>
+                            <li><a href="https://www.hotstar.com/in/channels/starplus">Star Plus</a></li>
+                            <li><a href="https://www.hotstar.com/in/channels/showtime">Show Time</a></li>
+                            <li><a href="https://www.hotstar.com/in/channels/quix">Quix</a></li>
+                            <li><a href="https://www.hotstar.com/in/channels/fox-life">Foxlife</a></li>
+                            <li><a href="https://www.hotstar.com/in/channels">more..</a></li>
+                        </ul>
+                   </li>
+                   <li class="drop-down-parent"><a href="https://www.hotstar.com/in/movies<">Movies</a>
+                         <ul class="li-ul-dropdown">
+                            <li><a href="https://www.hotstar.com/in/movies/languages/hindi">Hindi</a></li>
+                            <li><a href="https://www.hotstar.com/in/movies/languages/english">English</a></li>
+                            <li><a href="https://www.hotstar.com/in/movies/languages/marathi">Marathi</a></li>
+                            <li><a href="https://www.hotstar.com/in/movies/languages/telugu">Telugu</a></li>
+                            <li><a href="https://www.hotstar.com/in/movies/languages/bengali">Bengali</a></li>
+                            <li><a href="https://www.hotstar.com/in/movies/languages/malayalam">Malayalam</a></li>
+                            <li><a href="https://www.hotstar.com/in/movies/languages/kannada">Kannada</a></li>
+                         </ul>
+                   </li>
+                   <li class="drop-down-parent"><a href="https://www.hotstar.com/in/sports">Sports</a>
+                         <ul class="li-ul-dropdown">
+                            <li><a href="https://www.hotstar.com/in/sports/cricket">Cricket</a></li>
+                            <li><a href="https://www.hotstar.com/in/sports/football">Football</a></li>
+                            <li><a href="https://www.hotstar.com/in/sports/badminton">Badminton</a></li>
+                            <li><a href="https://www.hotstar.com/in/sports/tennis">Tennis</a></li>
+                            <li><a href="https://www.hotstar.com/in/sports/formula-1">Formula 1</a></li>
+                            <li><a href="https://www.hotstar.com/in/sports/golf">Golf</a></li>
+                            <li><a href="https://www.hotstar.com/in/sports/hockey">Hockey</a></li>
+                            <li><a href="https://www.hotstar.com/in/sports/wrestling">Wrestling</a></li>
+                            <li><a href="https://www.hotstar.com/in/sports/kabaddi">Kabaddi</a></li>
+                            <li><a href="https://www.hotstar.com/in/sports/esports">eSports</a></li>
+                         </ul>
+                   </li>
+                   <li><a href="https://www.hotstar.com/in/news">News</a></li>
+                   <li><a href="https://www.hotstar.com/in/premium">Premium</a></li>
+                   <li><a href="https://www.hotstar.com/in/disneyplus">Diseny+</a></li>
+                </ul>
+            </nav>
+            <div class="kids">
+                <a href="https://www.hotstar.com/in">
+                    <div class="kids-logo">
+                        <img src="{% static 'images/kids.svg' %}" alt="">
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="right-header">
+            <form action="/search/" class="search-form">
+            {% csrf_token %}
+                <div class="search-bar">
+                    <input type="text" name="query" id="query" placeholder="Search" class="input-search">
+                    <button type="submit" class="search-icon"><i class="fas fa-search" aria-hidden="true"></i></button>
+                </div>
+            </form>
+            <div class="btn1"><a href="https://www.hotstar.com/in/subscribe/get-started">SUBSCRIBE</a></div>
+            {% if user.is_authenticated %}
+                <p class="user-login"><a href="/logout/">{{user.get_username}} , Logout</a></p>
+            {% else %}
+                <div class="user-login"><a href="{% provider_login_url 'google' %}">Login</a></div>
+            {% endif %}
+            <div class="search-mobile">
+                <i class="fas fa-search mobile-search-icon" aria-hidden="true"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Nav Ends -->
+    <!-- Mobile Nav / Side bar -->
+    <div id="mobile-navbar">
+        <div class="nav-left">
+            <div class="login-box">
+             {% if user.is_authenticated %}
+                <a href="/logout/">
+                    <h1>{{user.get_username}} , Logout</h1>
+                    <h3>For a better experience</h3>
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            {% else %}
+                <a href="{% provider_login_url 'google' %}">
+                    <h1>Log in</h1>
+                    <h3>For a better experience</h3>
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            {% endif %}
+
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="watch-list">
+                <a href="https://www.hotstar.com/in/subscribe/my-account">
+                    WatchList
+                </a>
+            </div>
+
+            <div class="hr"></div>
+            <div class="kids-safe-box">
+                <div class="kids-logo">
+                    <img src="{% static 'images/kidsSafe.svg' %}" alt="">
+                </div>
+                <div class="toggler">
+                    <div class="toggle-box">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-ul">
+                <ul>
+                    <li><a href="https://www.hotstar.com/in/news">News</a></li>
+                    <li><a href="https://www.hotstar.com/in/premium">Premium</a></li>
+                    <li><a href="https://www.hotstar.com/in/channels">Channels</a></li>
+                    <li><a href="https://www.hotstar.com/in/languages">Languages</a></li>
+                    <li><a href="https://www.hotstar.com/in/genres">Genres</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav-right"></div>
+    </div>
+    <!-- Mobile Nav / Side bar ends -->
+
+    <!-- Mobile Search Box -->
+    <div class="mobile-search-box">
+        <div class="search-input-box">
+            <form action="/search/">
+            {% csrf_token %}
+                <input type="text" name="query" id="query" placeholder="Searching..." class="mobile-input-search">
+                <i class="fas fa-arrow-left"></i>
+                <button type="reset" class="btn-moblie-times-reset"><i class="fas fa-times" aria-hidden="true"></i></button>
+            </form>
+        </div>
+        <div class="content-search-box-mobile">
+            <h1>Search for</h1>
+            <h1>shows, movies, sports and TV</h1>
+            <h1>channels</h1>
+        </div>
+    </div>
+    <!-- Mobile Search Box ends-->
+    {% block body %}{% endblock body %}
+    <footer>
+        <p>Disney+ Hotstar Clone</p>
+        <p>&copy;2021 All Rights Reserved</p>
+        <p><a href="https://www.youtube.com/channel/UCf2AVyF3teP4v29gr2Mh4rg">SCREEN TECHNICALS</a></p>
+    </footer>
+    <!-- Scripts -->
+    <script src="{% static 'js/app.js'%}"></script>
+    <script src="{% static 'js/glide.min.js'%}"></script>
+    <script>
+        new Glide('.glide', {
+            type:'carousel',
+            startAt: 0,
+            perView: 1.1,
+            hoverpause: true,
+            autoplay: 3000,
+            gap: 30,
+            focusAt: 'center',
+            dragThreshold: false,
+            breakpoints:{
+                650: {
+                    perView: 1.1,
+                    gap: 10,
+                }
+            }
+        }).mount();
+        // Crads
+        new Glide('.glide2', {
+            type:'carousel',
+            startAt: 0,
+            perView: 6,
+            hoverpause: true,
+            autoplay: 3000,
+            gap: 30,
+            focusAt: 'center',
+            dragThreshold: 150,
+            breakpoints:{
+                650: {
+                    perView: 2,
+                    gap: 10,
+                }
+            }
+        }).mount();
+        new Glide('.glide3', {
+            type:'carousel',
+            startAt: 0,
+            perView: 6,
+            hoverpause: true,
+            autoplay: 3000,
+            gap: 30,
+            focusAt: 'center',
+            dragThreshold: 150,
+            breakpoints:{
+                650: {
+                    perView: 2,
+                    gap: 10,
+                }
+            }
+        }).mount();
+    </script>
+</body>
+</html>
